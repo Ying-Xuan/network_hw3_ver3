@@ -82,11 +82,11 @@ int main(int argc, char **argv){
 		strncpy(dst_mac_addr, mac_ntoa(eth_header->ether_dhost), sizeof(dst_mac_addr));
 		strncpy(src_mac_addr, mac_ntoa(eth_header->ether_shost), sizeof(src_mac_addr));
 		type = ntohs(eth_header->ether_type);
-		printf("+-------------------------+-------------------------+-------------------------+\n");
+		//printf("+-------------------------+-------------------------+-------------------------+\n");
 		printf("| Destination MAC Address:                                   %17s|\n", dst_mac_addr);
-		printf("+-------------------------+-------------------------+-------------------------+\n");
+		//printf("+-------------------------+-------------------------+-------------------------+\n");
 		printf("| Source MAC Address:                                        %17s|\n", src_mac_addr);
-		printf("+-------------------------+-------------------------+-------------------------+\n");
+		//printf("+-------------------------+-------------------------+-------------------------+\n");
 
         // Protocol is IP
 		if (ntohs(eth_header->ether_type) == ETHERTYPE_IP) {
@@ -102,18 +102,18 @@ int main(int argc, char **argv){
 			ttl = ip_header->ip_ttl;
 			protocol = ip_header->ip_p;
 			checksum = ntohs(ip_header->ip_sum);
-        	printf("Protocol: IP\n");
-			printf("+-----+------+------------+-------------------------+\n");
+        		printf("Protocol: IP\n");
+			//printf("+-----+------+------------+-------------------------+\n");
 			printf("| IV:%1u| HL:%2u| T: %8s| Total Length: %10u|\n", version, header_len, ip_ttoa(tos), total_len);
-			printf("+-----+------+------------+-------+-----------------+\n");
+			//printf("+-----+------+------------+-------+-----------------+\n");
 			printf("| Identifier:        %5u| FF:%3s| FO:        %5u|\n", id, ip_ftoa(offset), offset & OFFMASK);
-			printf("+------------+------------+-------+-----------------+\n");
+			//printf("+------------+------------+-------+-----------------+\n");
 			printf("| TTL:    %3u| Pro:    %3u| Header Checksum:   %5u|\n",ttl, protocol, checksum);
-			printf("+------------+------------+-------------------------+\n");
+			//printf("+------------+------------+-------------------------+\n");
 			printf("| Source IP Address:                 %15s|\n", src_ip);
-			printf("+---------------------------------------------------+\n");
+			//printf("+---------------------------------------------------+\n");
 			printf("| Destination IP Address:            %15s|\n", dst_ip);
-			printf("+---------------------------------------------------+\n");
+			//printf("+---------------------------------------------------+\n");
 
 			// record source IP and destination IP
             IP_count(src_ip, dst_ip);
